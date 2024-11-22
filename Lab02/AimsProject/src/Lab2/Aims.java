@@ -1,4 +1,7 @@
-package Lab2;
+package hust.soict.dsai.aims.Aims;
+
+import hust.soict.dsai.aims.cart.Cart.Cart;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc.DigitalVideoDisc;
 
 public class Aims {
 
@@ -17,5 +20,7 @@ public class Aims {
 		System.out.println(cart.totalCost());
 
 		cart.removeDigitalVideoDisc(dvd3);
+		cart.addDigitalVideoDisc(new DigitalVideoDisc[] { dvd1, dvd2 });
+		cart.addDigitalVideoDisc(dvd2, dvd3);
 	}
 }
