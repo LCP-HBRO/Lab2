@@ -68,7 +68,6 @@ public class Cart {
 		return cost;
 	}
 
-	// Method to print the cart's contents
 	public void printCart() {
 		System.out.println("***********************CART***********************");
 		System.out.println("Ordered Items:");
