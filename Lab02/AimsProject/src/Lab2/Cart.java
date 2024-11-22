@@ -1,6 +1,8 @@
-package Lab2;
+package hust.soict.dsai.aims.cart.Cart;
 
 import java.util.ArrayList;
+
+import hust.soict.dsai.aims.disc.DigitalVideoDisc.DigitalVideoDisc;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
@@ -29,15 +31,29 @@ public class Cart {
 		}
 	}
 
-	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-		int d = 0;
-		for (DigitalVideoDisc Disc : itemsOrdered) {
-			if (Disc.getTitle() == disc.getTitle()) {
-				d += 1;
+	public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+		if ((qtyOrdered() + dvdList.length) <= MAX_NUMBERS_ORDERED) {
+			for (DigitalVideoDisc dvd : dvdList) {
+				itemsOrdered.add(dvd);
 			}
+			System.out.println("All DVDs have been added successfully");
+		} else {
+			System.out.println("Can't add all the DVDs. The cart will be full.");
 		}
-		if (d != 0) {
-			itemsOrdered.remove(disc);
+	}
+
+	public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+		if ((qtyOrdered() + 2) <= MAX_NUMBERS_ORDERED) {
+			itemsOrdered.add(dvd1);
+			itemsOrdered.add(dvd2);
+			System.out.println("The 2 discs have been added successfully");
+		} else {
+			System.out.println("The cart is full. Cannot add 2 more DVDs.");
+		}
+	}
+
+	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
+		if (itemsOrdered.remove(disc)) {
 			System.out.println("The disc has been removed successfully");
 		} else {
 			System.out.println("The disc isn't in the cart");
@@ -52,4 +68,16 @@ public class Cart {
 		return cost;
 	}
 
+	// Method to print the cart's contents
+	public void printCart() {
+		System.out.println("***********************CART***********************");
+		System.out.println("Ordered Items:");
+		int index = 1;
+		for (DigitalVideoDisc disc : itemsOrdered) {
+			System.out.println(index + ". " + disc.toString());
+			index++;
+		}
+		System.out.println("Total cost: " + totalCost() + " $");
+		System.out.println("***************************************************");
+	}
 }
