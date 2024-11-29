@@ -1,0 +1,24 @@
+1.What Happens If obj Is Not an Instance of Track:
+If the object passed to the equals() method is not an instance of Track, the condition getClass() != obj.getClass() will evaluate to true, and the method will return false without performing any cast. This prevents a ClassCastException.
+2.Alternatively, to compare items in the cart, instead of using Comparator, we can use the
+Comparable interface and override the compareTo()method. You can refer to the Java docs to see
+the information of this interface.
+Suppose we are taking this Comparable interface approach.
+- What class should implement the Comparable interface?
+- In those classes, how should you implement the compareTo()method be to reflect the ordering that we
+want?
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+- Suppose the DVDs has a different ordering rule from the other media types, that is by title, then
+decreasing length, then cost. How would you modify your code to allow this?
+a. What class should implement the Comparable interface?
+The class that should implement the Comparable interface is the Media class (or its subclasses if each has a unique comparison logic).
+b.How should the compareTo() method be implemented?
+The compareTo() method should reflect the primary ordering rule you want for Media. For example, ordering by title first, then by cost
+c.Can we have two ordering rules using Comparable?
+No, the Comparable interface defines only one natural ordering for a class. To have multiple ordering rules, you would need to use the Comparator interface as shown earlier.
+
+Alternative with Comparator: You can define multiple Comparator implementations to handle different orderings while keeping the Comparable interface for the default ordering.
+
+d.Custom Ordering for DigitalVideoDisc (by title, decreasing length, then cost):
+If DigitalVideoDisc needs a different ordering than other Media types, it can override compareTo()
